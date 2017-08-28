@@ -8,7 +8,7 @@ public class JsonStore implements Json{
 	public JsonStore(String name) {
 		this.path=path+name;
 		this.jsons=null;
-		File jsonStore=new File(this.path);
+		this.jsonStore=new File(this.path);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class JsonStore implements Json{
 
 	@Override
 	public void Delete() {
-		// TODO Auto-generated method stub
+		this.jsonStore.delete();
 		
 	}
 	public void Add(JsonFile json) {

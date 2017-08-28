@@ -4,9 +4,11 @@ import java.io.File;
 public class JsonFile implements Json{
 	String path;
 	String name;
+	File jsonfile;
 	public JsonFile(String name) {
 		this.path=null;
-		this.name=name;
+		this.name=name+".json";
+		//tomar en cuenta el file()
 	}
 
 	@Override
