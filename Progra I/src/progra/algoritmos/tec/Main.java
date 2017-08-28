@@ -9,6 +9,9 @@ public class Main {
 		linkedDB.add(8);
 		linkedDB.print();
 		System.out.println(linkedDB.search(8));
+		Json archivo=FileFactory.Factory("Hola", FilesTypes.JsonStore);
+		archivo.Delete();
+		
 	}
 
 }
