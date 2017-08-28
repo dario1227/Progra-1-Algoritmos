@@ -5,8 +5,6 @@ public class FileFactory {
 	}
 	public FileFactory() {
 		// TODO Auto-generated constructor stub
-	}() {
-		
-	}
+	} 
 
 }

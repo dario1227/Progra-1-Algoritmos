@@ -39,5 +39,3 @@ public class JsonStore implements Json{
 		
 	}
 	
-
-}
