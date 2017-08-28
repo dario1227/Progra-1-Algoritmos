@@ -3,13 +3,16 @@ package progra.algoritmos.tec;
 public class ListaDoble<T> {
 	Nodo<T> head;
 	Nodo<T> tail;
+	private int largo;
 	public ListaDoble() {
 		this.head=null;
 		this.tail=null;
+		this.largo=0;
 	}
 	public void add(T valor) {
 		Nodo<T> nodo=new Nodo<>();
 		nodo.valor=valor;
+		largo++;
 		if(head==null){
 			head=nodo;
 			tail=head;
@@ -28,6 +31,7 @@ public class ListaDoble<T> {
 	}
 	public void delete(T valor) {
 		Nodo<T> nodo=head;
+		largo--;
 		if(head.valor==valor) {
 			head=head.next;
 		}
@@ -50,5 +54,18 @@ public class ListaDoble<T> {
 			System.out.print(nodo.valor);
 			nodo=nodo.next;
 		}
+	}
+	public T search(T valor) {
+		Nodo<T> temp=this.head;
+		while(temp!=null && temp.valor!=valor) {
+			temp=temp.next;
+			} 
+		if (temp!=null) {
+			return valor;
+		}
+		else {
+			System.out.println("No se encontro el valor");
+		}
+		return null;
 	}
 }
