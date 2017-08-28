@@ -1,5 +1,6 @@
 package progra.algoritmos.tec;
 import java.io.File;
+import java.io.IOException;
 
 public class JsonFile implements Json{
 	String path;
@@ -8,11 +9,16 @@ public class JsonFile implements Json{
 	public JsonFile(String name) {
 		this.path=null;
 		this.name=name+".json";
-		//tomar en cuenta el file()
 	}
 
 	@Override
 	public void Save() {
+		try {
+			this.jsonfile.createNewFile();
+		}catch (IOException ex) {
+			System.out.println(ex);
+			
+		}
 		
 	}
 
@@ -30,7 +36,7 @@ public class JsonFile implements Json{
 
 	@Override
 	public void Delete() {
-		// TODO Auto-generated method stub
+		this.jsonfile.delete();
 		
 	}
 	

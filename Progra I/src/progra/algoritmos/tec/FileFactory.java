@@ -1,7 +1,7 @@
 package progra.algoritmos.tec;
 
 public class  FileFactory {
-	public static Json Factory(String name,FilesTypes tipo ) {
+	public static Json getFile(String name,FilesTypes tipo ) {
 		if(tipo==FilesTypes.Json) {
 			Json json=new JsonFile(name);
 			return json; 

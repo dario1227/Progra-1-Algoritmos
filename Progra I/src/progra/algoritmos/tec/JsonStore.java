@@ -33,6 +33,7 @@ public class JsonStore implements Json{
 	}
 	public void Add(JsonFile json) {
 		json.path=this.path+"\\"+json.name;
+		json.jsonfile=new File(json.path);
 		this.jsons.add(json);
 			
 		}
