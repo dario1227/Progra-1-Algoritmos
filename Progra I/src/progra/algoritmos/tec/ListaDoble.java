@@ -9,35 +9,35 @@ public class ListaDoble<T> {
 		this.tail=null;
 		this.largo=0;
 	}
-	public void add(T valor) {
+	public void add(T json) {
 		Nodo<T> nodo=new Nodo<>();
-		nodo.valor=valor;
+		nodo.valor=json;
 		largo++;
 		if(head==null){
-			head=nodo;
-			tail=head;
+			this.head=nodo;
+			this.tail=this.head;
 		}
 		else if(head.next==null) {
-			head.next=nodo;
-			tail=nodo;
-			nodo.prev=head;
+			this.head.next=nodo;
+			this.tail=nodo;
+			nodo.prev=this.head;
 		}
 		else {
 			Nodo<T> temp=tail;
-			tail.next=nodo;
-			tail=nodo;
-			tail.prev=temp;
+			this.tail.next=nodo;
+			this.tail=nodo;
+			this.tail.prev=temp;
 		}
 	}
 	public void delete(T valor) {
-		Nodo<T> nodo=head;
+		Nodo<T> nodo=this.head;
 		largo--;
 		if(head.valor==valor) {
 			head=head.next;
 		}
 		else if(tail.valor==valor) {
-			tail=tail.prev;
-			tail.next=null;
+			this.tail=this.tail.prev;
+			this.tail.next=null;
 		} 
 		else {
 			while(nodo.valor!=valor) {
@@ -49,9 +49,9 @@ public class ListaDoble<T> {
 		}
 	}
 	public void print() {
-		Nodo<T> nodo =head;
+		Nodo<T> nodo =this.head;
 		while(nodo!=null) {
-			System.out.print(nodo.valor);
+			System.out.println(nodo.valor);
 			nodo=nodo.next;
 		}
 	}
@@ -63,9 +63,18 @@ public class ListaDoble<T> {
 		if (temp!=null) {
 			return valor;
 		}
+		
 		else {
 			System.out.println("No se encontro el valor");
 		}
 		return null;
 	}
+	public void save() {
+		while(this.head!=null) {
+			
+		}
+		
+	}
+		
+	
 }

@@ -10,35 +10,53 @@ public class JsonFile implements Json{
 		this.path=null;
 		this.name=name+".json";
 	}
-
 	@Override
-	public void Save() {
+	public void save() {
 		try {
 			this.jsonfile.createNewFile();
 		}catch (IOException ex) {
-			System.out.println(ex);
+			System.out.println("ERROR");
 			
 		}
 		
 	}
 
 	@Override
-	public void Read() {
+	public void read() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void Load() {
+	public void load() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public void Delete() {
+	public String getName() {
+		return this.name;
+	}
+	@Override
+	public ListaDoble<Json> getJsons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void delete() {
+		try {
 		this.jsonfile.delete();
+		System.out.println("JSON ELIMINADO");
+	}
+		catch (NullPointerException ex) {
+		System.out.println("NO EXISTE");
+		}
+	}
+	@Override
+	public void add(String name) {
+		// TODO Auto-generated method stub
 		
 	}
+
 	
 
 }
