@@ -1,79 +1,101 @@
 package progra.algoritmos.tec;
 
 public class ListaDoble<T> {
-	Nodo<T> head;
 	Nodo<T> tail;
-	private int largo;
 	public ListaDoble() {
-		this.head=null;
 		this.tail=null;
-		this.largo=0;
 	}
 	public void add(T json) {
 		Nodo<T> nodo=new Nodo<>();
 		nodo.valor=json;
-		largo++;
-		if(head==null){
-			this.head=nodo;
-			this.tail=this.head;
-		}
-		else if(head.next==null) {
-			this.head.next=nodo;
+		if(this.tail==null){
 			this.tail=nodo;
-			nodo.prev=this.head;
+			this.tail.next=this.tail;
+			this.tail.prev=this.tail;
+		}
+		else if(this.tail.next==this.tail) {
+			this.tail.next=nodo;
+			nodo.prev=this.tail;
+			nodo.next=this.tail;
+			this.tail.prev=nodo;
+			this.tail=nodo;
 		}
 		else {
-			Nodo<T> temp=tail;
+			Nodo<T> temp=tail.next;
 			this.tail.next=nodo;
+			nodo.prev=this.tail;
 			this.tail=nodo;
-			this.tail.prev=temp;
+			this.tail.next=temp;
+			temp.prev=this.tail;
 		}
 	}
 	public void delete(T valor) {
-		Nodo<T> nodo=this.head;
-		largo--;
-		if(head.valor==valor) {
-			head=head.next;
+		if (this.tail==null) {
+			System.out.println("LISTA VACIA");
 		}
-		else if(tail.valor==valor) {
-			this.tail=this.tail.prev;
-			this.tail.next=null;
-		} 
 		else {
-			while(nodo.valor!=valor) {
-				nodo=nodo.next;
+			Nodo<T> nodo=this.tail;
+			Nodo<T> end=this.tail;
+			if(this.tail.valor==valor) {
+				Nodo<T> temp=this.tail.next;
+				if(temp==this.tail) {
+					this.tail=null;
+				}
+				else if(temp.next==this.tail) {
+					this.tail=temp;
+					this.tail.next=this.tail;
+					this.tail.prev=this.tail;
+				}
+				else {
+					this.tail.prev.next=temp;
+					temp.prev=this.tail.prev;
+					this.tail=this.tail.prev;
+					
+					
+				}
 			}
-			Nodo<T> temp=nodo.next;
-			temp.prev=nodo.prev;
-			nodo.prev.next=temp;
+			else {
+				nodo=nodo.next;
+				while(nodo.valor!=valor && nodo!=end) {
+					nodo=nodo.next;
+				}
+				if(nodo==end) {
+					System.out.println("NO SE ENCONTRO");
+				}
+				else {
+					Nodo<T> temp=nodo.next;
+					temp.prev=nodo.prev;
+					nodo.prev.next=temp;	
+				}
+			}
 		}
 	}
 	public void print() {
-		Nodo<T> nodo =this.head;
-		while(nodo!=null) {
-			System.out.println(nodo.valor);
+		Nodo<T> nodo =this.tail;
+		Nodo<T> end=this.tail;
+		while(true) {
+			System.out.println(nodo.next.valor);
 			nodo=nodo.next;
+			if(nodo==end) {
+				break;
+			}
 		}
 	}
 	public T search(T valor) {
-		Nodo<T> temp=this.head;
-		while(temp!=null && temp.valor!=valor) {
-			temp=temp.next;
-			} 
-		if (temp!=null) {
+		Nodo<T> nodo=this.tail;
+		Nodo<T> end=this.tail;
+		while(nodo!=null && nodo.valor!=valor) {
+			nodo=nodo.next;
+			if(nodo==end) {
+				System.out.println("No se encontro el valor");
+				break;
+			}
+		} 
+		if (nodo.valor==valor) {
+			System.out.println("ENCONTRADO");
 			return valor;
 		}
-		
-		else {
-			System.out.println("No se encontro el valor");
-		}
 		return null;
-	}
-	public void save() {
-		while(this.head!=null) {
-			
-		}
-		
 	}
 		
 	

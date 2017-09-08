@@ -15,15 +15,18 @@ public class JsonStore implements Json{
 	@Override
 	public void delete() {
 		try {
-		Nodo<Json> file=this.jsons.head;
-		while(file!=null) {
+		Nodo<Json> file=this.jsons.tail;
+		Nodo<Json> end=this.jsons.tail;
+		while(true) {
 			file.valor.delete();
 			file=file.next;
+			if(file==end) {
+				break;
+			}
 		}
 		this.jsonStore.delete();
 		this.jsons=null;
-		System.out.println("STORE ELIMINADO");
-		System.out.println(this.path);
+		System.out.println(this.name+ " ELIMINADO");
 		}catch(NullPointerException ex) {
 			System.out.println("NO EXISTE");
 		}
@@ -39,10 +42,14 @@ public class JsonStore implements Json{
 	@Override
 	public void save() {
 		this.jsonStore.mkdirs();
-		Nodo<Json> temp=this.jsons.head;
-		while(temp!=null) {
+		Nodo<Json> temp=this.jsons.tail;
+		Nodo<Json> end=this.jsons.tail;
+		while(true) {
 			temp.valor.save();
 			temp=temp.next;
+			if(temp==end) {
+				break;
+			}
 		}
 		
 	}

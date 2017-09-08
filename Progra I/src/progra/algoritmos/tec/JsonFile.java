@@ -45,7 +45,7 @@ public class JsonFile implements Json{
 	public void delete() {
 		try {
 		this.jsonfile.delete();
-		System.out.println("JSON ELIMINADO");
+		System.out.println(this.name+" ELIMINADO");
 	}
 		catch (NullPointerException ex) {
 		System.out.println("NO EXISTE");
