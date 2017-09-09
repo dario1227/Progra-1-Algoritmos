@@ -1,10 +1,11 @@
-package progra.algoritmos.tec;
+package progra.algoritmos.tec.estructurasDatos;
 
-public class ListaDoble<T> {
+public class ListaDobleC<T> implements Lista<T>{
 	Nodo<T> tail;
-	public ListaDoble() {
+	public ListaDobleC() {
 		this.tail=null;
 	}
+	@Override
 	public void add(T json) {
 		Nodo<T> nodo=new Nodo<>();
 		nodo.valor=json;
@@ -29,6 +30,7 @@ public class ListaDoble<T> {
 			temp.prev=this.tail;
 		}
 	}
+	@Override
 	public void delete(T valor) {
 		if (this.tail==null) {
 			System.out.println("LISTA VACIA");
@@ -70,6 +72,7 @@ public class ListaDoble<T> {
 			}
 		}
 	}
+	@Override
 	public void print() {
 		Nodo<T> nodo =this.tail;
 		Nodo<T> end=this.tail;
@@ -81,6 +84,7 @@ public class ListaDoble<T> {
 			}
 		}
 	}
+	@Override
 	public T search(T valor) {
 		Nodo<T> nodo=this.tail;
 		Nodo<T> end=this.tail;
@@ -96,6 +100,15 @@ public class ListaDoble<T> {
 			return valor;
 		}
 		return null;
+	}
+	@Override
+	public Nodo<T> getHead() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Nodo<T> getTail() {
+		return this.tail;
 	}
 		
 	

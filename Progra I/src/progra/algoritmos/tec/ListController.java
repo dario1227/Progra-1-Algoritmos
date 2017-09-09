@@ -1,14 +1,14 @@
 package progra.algoritmos.tec;
-
+import progra.algoritmos.tec.estructurasDatos.*;
 public class ListController {
-	static ListaDoble<Json> deletes=new ListaDoble<>();
-	public static Json search(ListaDoble<Json>lista,String name) {
-		if(lista.tail==null) {
+	static Lista<Json> deletes=ListFactory.getlist(ListTypes.Simple);
+	public static Json search(Lista<Json>lista,String name) {
+		if(lista.getTail()==null) {
 			System.out.println("LISTA VACIA");
 		}
 		else {
-		Nodo<Json> temp=lista.tail;
-		Nodo<Json> end=lista.tail;
+		Nodo<Json> temp=lista.getTail();
+		Nodo<Json> end=lista.getTail();
 		try {
 		while(temp!=null) {
 			if(temp.valor.getName().equalsIgnoreCase(name)) {
@@ -16,9 +16,9 @@ public class ListController {
 				return temp.valor;
 			}
 			else {
-				ListaDoble<Json> store=temp.valor.getJsons();
-				Nodo<Json> temp2=store.tail;
-				Nodo<Json> end2=store.tail;
+				ListaDobleC<Json> store=temp.valor.getJsons();
+				Nodo<Json> temp2=store.getTail();
+				Nodo<Json> end2=store.getTail();
 				while(temp2!=null) {
 					if(temp2.valor.getName().equalsIgnoreCase(name+".json")) {
 						System.out.println(temp2.valor.getName()+" ENCONTRADO");
@@ -47,11 +47,10 @@ public class ListController {
 		return null;
 	}
 
-	public static void commit(ListaDoble<Json> list) {
-		Nodo<Json> temp=list.tail;
-		Nodo<Json> end=list.tail;
-		Nodo<Json> delete=ListController.deletes.tail;
-		Nodo<Json> endDelete=ListController.deletes.tail;
+	public static void commit(Lista<Json> lista) {
+		Nodo<Json> temp=lista.getTail();
+		Nodo<Json> end=lista.getTail();
+		Nodo<Json> delete=ListController.deletes.getHead();
 		while(true) {
 			temp.valor.save();
 			temp=temp.next;
@@ -60,14 +59,19 @@ public class ListController {
 			}
 		}
 		while(true) {
-			delete.valor.delete();
-			delete=delete.next;
-			if(delete==endDelete) {
+			if(delete==null){
 				break;
+			}
+			else {
+				while(delete!=null) {
+					
+				delete.valor.delete();
+				delete=delete.next;
+				}
 			}
 		}
 	}
-	public static void  delete(ListaDoble<Json> list,String name) {
+	public static void  delete(Lista<Json> list,String name) {
 		Json toDelete=ListController.search(list, name);
 		deletes.add(toDelete);
 	}

@@ -1,4 +1,6 @@
 package progra.algoritmos.tec;
+import progra.algoritmos.tec.estructurasDatos.*;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -37,7 +39,7 @@ public class JsonFile implements Json{
 		return this.name;
 	}
 	@Override
-	public ListaDoble<Json> getJsons() {
+	public ListaDobleC<Json> getJsons() {
 		// TODO Auto-generated method stub
 		return null;
 	}

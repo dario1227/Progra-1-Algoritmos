@@ -1,5 +1,5 @@
 package progra.algoritmos.tec;
-
+import progra.algoritmos.tec.estructurasDatos.*;
 public interface Json {
 	void save();
 	void read();
@@ -7,6 +7,6 @@ public interface Json {
 	void delete();
 	void add(String name);
 	String getName();
-	ListaDoble<Json> getJsons();
+	ListaDobleC<Json> getJsons();
 
 }

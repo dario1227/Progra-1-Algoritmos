@@ -1,9 +1,9 @@
-package progra.algoritmos.tec;
+package progra.algoritmos.tec.estructurasDatos;
 
 public class Nodo<T> {
-	Nodo<T> next;
+	public Nodo<T> next;
 	Nodo<T> prev;
-	T valor;
+	public T valor;
 	public Nodo() {
 		this.next=null;
 		this.prev=null;
