@@ -2,14 +2,14 @@ package progra.algoritmos.tec;
 import java.io.File;
 import progra.algoritmos.tec.estructurasDatos.*;
 public class JsonStore implements Json{
-	ListaDobleC<Json> jsons;
+	Lista<Json> jsons;
 	String path="C:\\Users\\User1\\git\\Progra-1-Algoritmos\\Progra I\\src\\progra\\algoritmos\\tec\\metadata\\";
 	File jsonStore;
 	String name;
 	public JsonStore(String name) {
 		this.name=name;
 		this.path=path+name;
-		this.jsons=new ListaDobleC<Json>();
+		this.jsons=ListFactory.getlist(ListTypes.Circular);
 		this.jsonStore=new File(this.path);
 	}
 	@Override
@@ -18,7 +18,7 @@ public class JsonStore implements Json{
 		Nodo<Json> file=this.jsons.getTail();
 		Nodo<Json> end=this.jsons.getTail();
 		while(true) {
-			file.valor.delete();
+			file.getValor().delete();
 			file=file.next;
 			if(file==end) {
 				break;
@@ -45,7 +45,7 @@ public class JsonStore implements Json{
 		Nodo<Json> temp=this.jsons.getTail();
 		Nodo<Json> end=this.jsons.getTail();
 		while(true) {
-			temp.valor.save();
+			temp.getValor().save();
 			temp=temp.next;
 			if(temp==end) {
 				break;
@@ -55,25 +55,37 @@ public class JsonStore implements Json{
 	}
 
 	@Override
-	public void read() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String getName() {
 		return this.name;
 	}
 
 	@Override
-	public ListaDobleC<Json> getJsons() {
+	public Lista<Json> getJsons() {
 		return this.jsons;
+	}
+	@Override
+	public Lista<Lista<String>> getColumnas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void addColumna(String nombre, String Tipo, String Predeterminado, String Requerido, String Especial) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addInstance() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Lista<Lista<String>> getInstancias() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getpath() {
+		return this.path;
 	}
 		
 }

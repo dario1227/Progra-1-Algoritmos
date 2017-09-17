@@ -8,7 +8,7 @@ public class ListaDobleC<T> implements Lista<T>{
 	@Override
 	public void add(T json) {
 		Nodo<T> nodo=new Nodo<>();
-		nodo.valor=json;
+		nodo.setValor(json);
 		if(this.tail==null){
 			this.tail=nodo;
 			this.tail.next=this.tail;
@@ -38,7 +38,7 @@ public class ListaDobleC<T> implements Lista<T>{
 		else {
 			Nodo<T> nodo=this.tail;
 			Nodo<T> end=this.tail;
-			if(this.tail.valor==valor) {
+			if(this.tail.getValor()==valor) {
 				Nodo<T> temp=this.tail.next;
 				if(temp==this.tail) {
 					this.tail=null;
@@ -58,7 +58,7 @@ public class ListaDobleC<T> implements Lista<T>{
 			}
 			else {
 				nodo=nodo.next;
-				while(nodo.valor!=valor && nodo!=end) {
+				while(nodo.getValor()!=valor && nodo!=end) {
 					nodo=nodo.next;
 				}
 				if(nodo==end) {
@@ -77,7 +77,7 @@ public class ListaDobleC<T> implements Lista<T>{
 		Nodo<T> nodo =this.tail;
 		Nodo<T> end=this.tail;
 		while(true) {
-			System.out.println(nodo.next.valor);
+			System.out.println(nodo.next.getValor());
 			nodo=nodo.next;
 			if(nodo==end) {
 				break;
@@ -88,14 +88,14 @@ public class ListaDobleC<T> implements Lista<T>{
 	public T search(T valor) {
 		Nodo<T> nodo=this.tail;
 		Nodo<T> end=this.tail;
-		while(nodo!=null && nodo.valor!=valor) {
+		while(nodo!=null && nodo.getValor()!=valor) {
 			nodo=nodo.next;
 			if(nodo==end) {
 				System.out.println("No se encontro el valor");
 				break;
 			}
 		} 
-		if (nodo.valor==valor) {
+		if (nodo.getValor()==valor) {
 			System.out.println("ENCONTRADO");
 			return valor;
 		}

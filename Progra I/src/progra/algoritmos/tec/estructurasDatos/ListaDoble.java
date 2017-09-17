@@ -10,12 +10,12 @@ public class ListaDoble<T> implements Lista<T>{
 		@Override
 		public void add(T json) {
 			Nodo<T> nodo=new Nodo<>();
-			nodo.valor=json;
-			if(head==null){
+			nodo.setValor(json);
+			if(this.head==null){
 				this.head=nodo;
 				this.tail=this.head;
 			}
-			else if(head.next==null) {
+			else if(this.head.next==null) {
 				this.head.next=nodo;
 				this.tail=nodo;
 				nodo.prev=this.head;
@@ -30,15 +30,15 @@ public class ListaDoble<T> implements Lista<T>{
 		@Override
 		public void delete(T valor) {
 			Nodo<T> nodo=this.head;
-			if(head.valor==valor) {
-				head=head.next;
+			if(this.head.getValor()==valor) {
+				this.head=head.next;
 			}
-			else if(tail.valor==valor) {
-				this.tail=this.tail.prev;
+			else if(tail.getValor()==valor) {
+				this.tail=tail.prev;
 				this.tail.next=null;
 			} 
 			else {
-				while(nodo.valor!=valor) {
+				while(nodo.getValor()!=valor) {
 					nodo=nodo.next;
 				}
 				Nodo<T> temp=nodo.next;
@@ -50,14 +50,14 @@ public class ListaDoble<T> implements Lista<T>{
 		public void print() {
 			Nodo<T> nodo =this.head;
 			while(nodo!=null) {
-				System.out.println(nodo.valor);
+				System.out.println(nodo.getValor());
 				nodo=nodo.next;
 			}
 		}
 		@Override
 		public T search(T valor) {
 			Nodo<T> temp=this.head;
-			while(temp!=null && temp.valor!=valor) {
+			while(temp!=null && temp.getValor()!=valor) {
 				temp=temp.next;
 				} 
 			if (temp!=null) {
