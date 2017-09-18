@@ -17,6 +17,11 @@ public class JsonFile implements Json{
 		this.listaInstancias=ListFactory.getlist(ListTypes.Simple);
 	}
 	@Override
+	public void setInstancias(Lista<Lista<String>> listaIns) {
+		this.listaInstancias=listaIns;
+		
+	}
+	@Override
 	public void addInstance() {
 		Lista<String> instancia=ListFactory.getlist(ListTypes.Simple);
 		Nodo<Lista<String>> temp=this.listaColumnas.getHead();
@@ -84,7 +89,7 @@ public class JsonFile implements Json{
 		// TODO Auto-generated method stub
 		return this.path;
 	}
-
+	
 	
 
 }

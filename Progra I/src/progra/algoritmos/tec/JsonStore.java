@@ -87,6 +87,11 @@ public class JsonStore implements Json{
 	public String getpath() {
 		return this.path;
 	}
+	@Override
+	public void setInstancias(Lista<Lista<String>> listaIns) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }
 	

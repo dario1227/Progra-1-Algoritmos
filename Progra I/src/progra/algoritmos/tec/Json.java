@@ -11,5 +11,6 @@ public interface Json {
 	void addInstance();
 	Lista<Lista<String>> getInstancias();
 	String getpath();
+	void setInstancias(Lista<Lista<String>> listaIns);
 
 }
