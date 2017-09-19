@@ -74,11 +74,6 @@ public class JsonStore implements Json{
 		
 	}
 	@Override
-	public void addInstance() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public Lista<Lista<String>> getInstancias() {
 		// TODO Auto-generated method stub
 		return null;
@@ -89,6 +84,11 @@ public class JsonStore implements Json{
 	}
 	@Override
 	public void setInstancias(Lista<Lista<String>> listaIns) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addInstance(Lista<String> datos) {
 		// TODO Auto-generated method stub
 		
 	}

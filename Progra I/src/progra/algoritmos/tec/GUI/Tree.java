@@ -5,11 +5,14 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
+import progra.algoritmos.tec.ListController;
+import progra.algoritmos.tec.Main;
 import progra.algoritmos.tec.estructurasDatos.Lista;
 import progra.algoritmos.tec.estructurasDatos.Nodo;
 import progra.algoritmos.tec.jsonController.Stores;
 public class Tree extends TreeCell<String>  {
-	public static TreeItem<String> newTree() throws IOException, ParseException {
+	public static TreeItem<String>treeF;
+	public static void newTree() throws IOException, ParseException {
 		TreeItem<String> tree= new TreeItem<String>();
 		Lista<Lista<String>> stores=Stores.getAllStores();
 		Nodo<Lista<String>> inicio=stores.getHead();
@@ -24,10 +27,10 @@ public class Tree extends TreeCell<String>  {
 			}
 			inicio=inicio.next;
 		}
-		return tree;
+		 treeF=tree;
 	}
 
-	private static TreeItem<String> makeBranch(String store, TreeItem<String> tree) {
+	public static TreeItem<String> makeBranch(String store, TreeItem<String> tree) {
 		TreeItem<String> item= new TreeItem<String>(store);
 		tree.getChildren().add(item);
 		return item;
@@ -36,13 +39,44 @@ public class Tree extends TreeCell<String>  {
 		ContextMenu menuStore= new ContextMenu();
 		ContextMenu menuJson=new ContextMenu();
 		MenuItem op1= new MenuItem("Agregar Json");
+		MenuItem opS=new MenuItem("Eliminar store");
 		MenuItem op2= new MenuItem("Mostrar Datos");
 		MenuItem op3= new MenuItem("Agregar Objeto");
 		MenuItem op4= new MenuItem("Eliminar Json");
 		MenuItem op5= new MenuItem("Eliminar Objeto");
 		MenuItem op6= new MenuItem("Buscar Objeto");
 		MenuItem op7= new MenuItem("Actualizar");
-		menuStore.getItems().add(op1);
+		op1.setOnAction(event -> {
+		    try {
+				NewScene.getScene(300, 300,"Json",getTreeItem());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+		});
+		op2.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		op3.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		op4.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		op5.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		op6.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		op7.setOnAction(event -> {
+		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+		});
+		opS.setOnAction(event -> {
+			Tree.treeF.getChildren().remove(getIndex());
+		    ListController.delete(Main.linkedDB, getTreeItem().getValue());
+		});
+		menuStore.getItems().addAll(op1,opS);
 		menuJson.getItems().addAll(op2,op3,op4,op5,op6,op7);
 		ContextMenu menu;
 		if(num==1) {

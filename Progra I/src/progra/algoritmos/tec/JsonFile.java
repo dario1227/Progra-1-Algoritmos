@@ -22,11 +22,13 @@ public class JsonFile implements Json{
 		
 	}
 	@Override
-	public void addInstance() {
+	public void addInstance(Lista<String>datos) {
 		Lista<String> instancia=ListFactory.getlist(ListTypes.Simple);
 		Nodo<Lista<String>> temp=this.listaColumnas.getHead();
+		Nodo<String> dato=datos.getHead();
 		while(temp!=null) {
-			instancia.add("valor que pida la columna");
+			instancia.add(dato.getValor());
+			dato=dato.next;
 			temp=temp.next;
 		}
 		this.listaInstancias.add(instancia);

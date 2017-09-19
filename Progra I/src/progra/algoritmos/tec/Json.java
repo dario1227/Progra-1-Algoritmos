@@ -8,9 +8,9 @@ public interface Json {
 	Lista<Json> getJsons();
 	Lista<Lista<String>> getColumnas();
 	void addColumna(String nombre,String Tipo, String Predeterminado,String Requerido,String Especial);
-	void addInstance();
 	Lista<Lista<String>> getInstancias();
 	String getpath();
 	void setInstancias(Lista<Lista<String>> listaIns);
+	void addInstance(Lista<String> datos);
 
 }
