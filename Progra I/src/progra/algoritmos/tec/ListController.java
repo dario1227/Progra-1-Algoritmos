@@ -1,5 +1,12 @@
 package progra.algoritmos.tec;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import progra.algoritmos.tec.estructurasDatos.*;
+import progra.algoritmos.tec.jsonController.Instances;
+import progra.algoritmos.tec.jsonController.MetadataControl;
+import progra.algoritmos.tec.jsonController.Stores;
 public class ListController {
 	static Lista<Json> deletes=ListFactory.getlist(ListTypes.Simple);
 	public static Json search(Lista<Json>lista,String name) {
@@ -43,7 +50,7 @@ public class ListController {
 		return null;
 	}
 
-	public static void commit(Lista<Json> lista) {
+	public static void commit(Lista<Json> lista) throws IOException, ParseException {
 		Nodo<Json> temp=lista.getHead();
 		Nodo<Json> delete=ListController.deletes.getHead();
 		System.out.println("COMMIT!!!!!");
@@ -62,7 +69,18 @@ public class ListController {
 			catch (NullPointerException ex) {
 				}
 			}
+		MetadataControl.saveMetadata(MetadataControl.convertMetadata(lista));
+		Lista<Lista<String>>listaJsons=Stores.getAllStores();
+		Nodo<Lista<String>> json=listaJsons.getHead();
+		while(json!=null) {
+			Nodo<String>nombre =json.getValor().getHead().next;
+			while(nombre!=null) {
+				Instances.saveInstances(ListController.search(lista, nombre.getValor().substring(0, nombre.getValor().length()-5)));
+				nombre=nombre.next;
+			}
+		json=json.next;
 		}
+	}
 	public static void  delete(Lista<Json> list,String name) {
 		Json toDelete=ListController.search(list, name);
 		list.delete(ListController.search(list, name));
