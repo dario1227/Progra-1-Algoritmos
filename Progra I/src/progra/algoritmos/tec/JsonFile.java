@@ -27,6 +27,7 @@ public class JsonFile implements Json{
 		Nodo<Lista<String>> temp=this.listaColumnas.getHead();
 		Nodo<String> dato=datos.getHead();
 		while(temp!=null) {
+			System.out.println(dato.getValor());
 			instancia.add(dato.getValor());
 			dato=dato.next;
 			temp=temp.next;

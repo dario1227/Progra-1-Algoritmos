@@ -35,8 +35,11 @@ public class Instances {
 		Nodo<Lista<String>> insta=jason.getInstancias().getHead();
 		while(insta!=null) {
 			JSONObject instancia=new JSONObject();
+			Nodo<String>dato=insta.getValor().getHead();
 			while(Valor!=null) {
-				instancia.put(Valor.getValor(),insta.getValor().getHead().getValor());
+				instancia.put(Valor.getValor(),dato.getValor());
+				System.out.println(dato.getValor());
+				dato=dato.next;
 				Valor=Valor.next;
 			}
 			instancias.add(instancia);

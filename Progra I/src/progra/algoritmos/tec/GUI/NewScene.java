@@ -13,6 +13,10 @@ import progra.algoritmos.tec.FileFactory;
 import progra.algoritmos.tec.FilesTypes;
 import progra.algoritmos.tec.ListController;
 import progra.algoritmos.tec.Main;
+import progra.algoritmos.tec.estructurasDatos.ListFactory;
+import progra.algoritmos.tec.estructurasDatos.ListTypes;
+import progra.algoritmos.tec.estructurasDatos.Lista;
+import progra.algoritmos.tec.estructurasDatos.Nodo;
 
 
 
@@ -94,7 +98,7 @@ public class NewScene{
 	    		});
 	 	        stage.setScene(esco);
 	        }
-	        else {
+	        else if(name.equals("Store")){
 	        	Label Snombre=new Label("Nombre");
 	        	TextField contenidoN= new TextField();
 	        	GridPane.setConstraints(Snombre, 0, 0);
@@ -111,6 +115,47 @@ public class NewScene{
 	    		});
     		stage.setScene(esco);
 	        	
+	        }
+	        else {
+	        	Lista<Lista<String>>columnas;
+	        	Lista<String>Valores=ListFactory.getlist(ListTypes.Simple);
+	        	columnas=ListController.search(Main.linkedDB,treename.getValue()).getColumnas();
+	        	Nodo<Lista<String>>temp=columnas.getHead();
+	        	Lista<TextField>cajas=ListFactory.getlist(ListTypes.Simple);
+	        	while(temp!=null) {
+	        		Valores.add(temp.getValor().getHead().getValor());
+	        		temp=temp.next;
+	        	}
+	        	Nodo<String> inicio=Valores.getHead();
+	        	int index=0;
+	        	while(inicio!=null) {
+	        		Label Snombre=new Label(inicio.getValor());
+		        	TextField contenidoN= new TextField();
+		        	GridPane.setConstraints(Snombre, 0, index);
+		        	GridPane.setConstraints(contenidoN, 1, index);
+		        	grid.getChildren().addAll(Snombre,contenidoN);
+		        	cajas.add(contenidoN);
+		        	inicio=inicio.next;
+		        	index++;
+		        	
+	        	}
+	        	Button aceptar=new Button("Aceptar");
+	        	GridPane.setConstraints(aceptar, 1, index+1);
+	        	grid.getChildren().add(aceptar);
+	        	Scene esco= new Scene(grid,width,high);
+	    		aceptar.setOnAction(event -> {
+	    			Nodo<TextField>caja=cajas.getHead();
+	    			Lista<String>datos=ListFactory.getlist(ListTypes.Simple);
+	    			while(caja!=null) {
+	    				datos.add(caja.getValor().getText());
+	    				caja=caja.next;
+	    			}
+	    			datos.print();
+	    			ListController.search(Main.linkedDB,treename.getValue()).addInstance(datos);
+	    			stage.close();
+	    		});
+	    		stage.setScene(esco);
+
 	        }
 	        stage.show();	
 	}

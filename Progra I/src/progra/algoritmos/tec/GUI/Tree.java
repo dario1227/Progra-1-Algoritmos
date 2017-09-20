@@ -58,10 +58,20 @@ public class Tree extends TreeCell<String>  {
 		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
 		});
 		op3.setOnAction(event -> {
-		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+			try {
+				NewScene.getScene(300, 300,"objeto",getTreeItem());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+		    ;
 		});
 		op4.setOnAction(event -> {
-		    System.out.println("Fuck man, this tutorial is already outdated as fuck");
+			TreeItem<String>parent=getTreeItem().getParent();
+			parent.getChildren().remove(getIndex()-1);
+		    ListController.deleteJ(Main.linkedDB, getTreeItem().getValue(),parent.getValue());
 		});
 		op5.setOnAction(event -> {
 		    System.out.println("Fuck man, this tutorial is already outdated as fuck");

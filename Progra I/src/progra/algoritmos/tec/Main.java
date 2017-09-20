@@ -1,30 +1,111 @@
 package progra.algoritmos.tec;
-import progra.algoritmos.tec.estructurasDatos.*;
-public class Main {
+import java.io.IOException;
 
+import org.json.simple.parser.ParseException;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import progra.algoritmos.tec.GUI.NewScene;
+import progra.algoritmos.tec.GUI.Tree;
+import progra.algoritmos.tec.estructurasDatos.Lista;
+import progra.algoritmos.tec.jsonController.Instances;
+import progra.algoritmos.tec.jsonController.MetadataControl;
+public class Main extends Application implements EventHandler<ActionEvent>{
+	public static Lista<Json> linkedDB;
 	public static void main(String[] args) {
 		try {
-			Lista<Json> linkedDB=ListFactory.getlist(ListTypes.Circular);
-			linkedDB.add(FileFactory.getFile("gola", FilesTypes.JsonStore));
-			linkedDB.add(FileFactory.getFile("fola", FilesTypes.JsonStore));
-			linkedDB.add(FileFactory.getFile("tola", FilesTypes.JsonStore));
-			linkedDB.add(FileFactory.getFile("hola", FilesTypes.JsonStore));
-			linkedDB.print();
-			ListController.search(linkedDB,"fola").add("jsoncreado1");
-			ListController.search(linkedDB,"fola").add("jsoncreado2");
-			ListController.search(linkedDB,"gola").add("jsoncreado3");
-			ListController.search(linkedDB,"tola").add("jsoncreado4");
-			ListController.search(linkedDB,"hola").add("jsoncreado5");
-			ListController.search(linkedDB, "jsoncreado3");
-			ListController.delete(linkedDB, "fola");
-			ListController.commit(linkedDB);
-
+//			Instances.saveInstances(ListController.search(linkedDB,"estudiantesTEc"));
+			launch(args);
+//			Lista<Json> linkedDB=ListFactory.getlist(ListTypes.Doble);
+//			linkedDB.add(FileFactory.getFile("TEC", FilesTypes.JsonStore));
+//			linkedDB.add(FileFactory.getFile("UCR", FilesTypes.JsonStore));
+//			ListController.search(linkedDB,"TEC").add("EstudiantesTEC");
+//			ListController.search(linkedDB,"tec").add("CursosTEC");
+//			ListController.search(linkedDB,"ucr").add("EstudiantesUCR");
+//			ListController.search(linkedDB,"ucr").add("ProfesoresUCR");
+//			ListController.search(linkedDB,"ucr").add("CursosUCR");
+//			ListController.search(linkedDB, "estudiantestec").addColumna("Nombre", "string", "", "si", "no");
+//			ListController.search(linkedDB, "estudiantestec").addColumna("Carnet", "int", "", "si", "no");
+//			ListController.search(linkedDB, "estudiantestec").addColumna("Apellido", "int", "", "si", "no");
+//			ListController.search(linkedDB, "estudiantesucr").addColumna("Nombre", "string", "", "si", "no");
+//			ListController.search(linkedDB, "Cursostec").addColumna("Codigo", "string", "", "si", "no");
+//			ListController.search(linkedDB, "cursosucr").addColumna("ID", "int", "", "si", "no");
+//			ListController.search(linkedDB, "profesoresucr").addColumna("Identificacion", "string", "", "si", "no");
+//			ListController.search(linkedDB, "estudiantestec").addInstance();
+//			ListController.search(linkedDB, "estudiantestec").addInstance();
+//			ListController.search(linkedDB, "estudiantestec").addInstance();
+//			ListController.search(linkedDB, "estudiantestec").addInstance();
+//			ListController.commit(linkedDB);
+		//	JsonManagement.saveMetadata(JsonManagement.convertMetadata(linkedDB));
+//			JsonManagement.saveInstances(ListController.search(linkedDB, "estudiantestec"));
 		}
 		catch (Exception ex) {
 			System.out.println(ex);
+			System.out.println("SE CAYO ESTA VARA :(");
 		}
-	
 	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		linkedDB=MetadataControl.readMetadata();
+		Instances.readInstances(linkedDB);
+		Tree.newTree();
+		primaryStage.setTitle("Base de datos");
+		TreeView<String> tree = new TreeView<>(Tree.treeF);
+		BorderPane pane= new BorderPane();
+		pane.setLeft(tree);
+		ContextMenu agregarS= new ContextMenu();
+		MenuItem op1= new MenuItem("Agregar JsonStore");
+		MenuItem op2= new MenuItem("Commit");
+		agregarS.getItems().addAll(op1,op2);
+		op1.setOnAction(event -> {
+		    try {
+				NewScene.getScene(350, 200,"Store",Tree.treeF);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+		});
+		op2.setOnAction(event -> {
+		    try {
+				ListController.commit(linkedDB);
+				primaryStage.close();
+			} catch (IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		tree.setShowRoot(false);
+		tree.setContextMenu(agregarS);
+	    tree.setCellFactory(new Callback<TreeView<String>,TreeCell<String>>(){
+	        @Override
+	        public TreeCell<String> call(TreeView<String> p) {
+	            return new Tree();
+	        }
+	    });
+	    ImageView imagen=new ImageView(new Image(getClass().getResourceAsStream("tec.jpg"),248,200,false, true));
+	    pane.setBottom(imagen);
+	    pane.setLeft(tree);
+	    BorderPane padre= new BorderPane();
+	    padre.setLeft(pane);
+		Scene scene=new Scene(padre, 900, 600);
+		primaryStage.setScene(scene);
+		primaryStage.centerOnScreen();
+		primaryStage.show();
+	}
+	@Override
+	public void handle(ActionEvent event) {
+	}
+		
 
 }
-

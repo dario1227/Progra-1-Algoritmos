@@ -93,7 +93,13 @@ public class MetadataControl {
 			String nombre=(String) store.get("name");
 			linkedDB.add(FileFactory.getFile(nombre,FilesTypes.JsonStore));
 			JSONArray jsons=(JSONArray)store.get("Jsons");
-			int largoJ=jsons.size();
+			int largoJ;
+			if(jsons==null) {
+				largoJ=0;
+			}else {
+				largoJ=jsons.size();
+			}
+			
 			int index2=0;
 			while(index2<largoJ) {
 				JSONObject Json=(JSONObject) jsons.get(index2);
@@ -120,7 +126,7 @@ public class MetadataControl {
 		return linkedDB;
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			System.out.println("ui");
 		}
 		return null;
 	}

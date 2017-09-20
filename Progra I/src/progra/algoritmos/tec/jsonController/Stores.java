@@ -24,7 +24,13 @@ public class Stores {
 			JSONArray jsons=(JSONArray)store.get("Jsons");
 			String nombre=(String) store.get("name");
 			storeL.add(nombre);
-			int largoJ=jsons.size();
+			int largoJ;
+			if(jsons==null) {
+				largoJ=0;
+			}else {
+				largoJ=jsons.size();
+			}
+			
 			int index2=0;
 			while(index2<largoJ) {
 				JSONObject Json=(JSONObject) jsons.get(index2);

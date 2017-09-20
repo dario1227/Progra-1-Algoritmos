@@ -45,13 +45,17 @@ public class JsonStore implements Json{
 		Nodo<Json> temp=this.jsons.getTail();
 		Nodo<Json> end=this.jsons.getTail();
 		while(true) {
-			temp.getValor().save();
-			temp=temp.next;
-			if(temp==end) {
+			if(temp==null) {
 				break;
 			}
+			else {
+				temp.getValor().save();
+				temp=temp.next;
+				if(temp==end) {
+					break;
+				}
+			}
 		}
-		
 	}
 
 	@Override

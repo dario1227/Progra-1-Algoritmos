@@ -55,6 +55,7 @@ public class ListController {
 		Nodo<Json> delete=ListController.deletes.getHead();
 		System.out.println("COMMIT!!!!!");
 		while(temp!=null) {
+			System.out.println(temp.getValor().getName());
 			temp.getValor().save();
 			System.out.println(temp.getValor().getName()+" GUARDADO");
 			temp=temp.next;
@@ -84,6 +85,12 @@ public class ListController {
 	public static void  delete(Lista<Json> list,String name) {
 		Json toDelete=ListController.search(list, name);
 		list.delete(ListController.search(list, name));
+		deletes.add(toDelete);
+	
+	}
+	public static void deleteJ(Lista<Json> list,String name,String Store) {
+		Json toDelete=ListController.search(list, name);
+		ListController.search(list, Store).getJsons().delete(ListController.search(list, name));
 		deletes.add(toDelete);
 	}
 }
