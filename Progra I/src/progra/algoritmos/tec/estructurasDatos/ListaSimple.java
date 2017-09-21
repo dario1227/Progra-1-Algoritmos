@@ -1,5 +1,10 @@
 package progra.algoritmos.tec.estructurasDatos;
-
+/**
+ * Estructura de lista Simple
+ * @author Dario
+ *
+ * @param <T>Tipo de datos que almacenara
+ */
 public class ListaSimple<T> implements Lista<T> {
 		Nodo<T> head;
 		public ListaSimple() {

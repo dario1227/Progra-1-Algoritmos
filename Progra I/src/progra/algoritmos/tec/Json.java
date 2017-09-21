@@ -1,5 +1,10 @@
 package progra.algoritmos.tec;
 import progra.algoritmos.tec.estructurasDatos.*;
+/**
+ * Interface para hacer polimorfismo a los archivos Json y tratarlos de igual manera
+ * @author Dario
+ *
+ */
 public interface Json {
 	void save();
 	void delete();

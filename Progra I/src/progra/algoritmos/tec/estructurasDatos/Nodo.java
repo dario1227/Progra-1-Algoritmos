@@ -1,5 +1,10 @@
 package progra.algoritmos.tec.estructurasDatos;
-
+/**
+ * Corresponde a las posiciones de los valores en las listas
+ * @author Dario
+ *
+ * @param <T> tipo de valor que tendra el nodo
+ */
 public class Nodo<T> {
 	public Nodo<T> next;
 	public Nodo<T> prev;

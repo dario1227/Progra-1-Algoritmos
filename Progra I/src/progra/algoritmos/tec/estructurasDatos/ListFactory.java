@@ -1,6 +1,14 @@
 package progra.algoritmos.tec.estructurasDatos;
-
+/**
+ * Hace una lista segun el tipo que se le indique
+ * @author Dario
+ *
+ */
 public class ListFactory {
+	/**
+	 * 
+	 * @return una lista segun el tipo seleccionado
+	 */
 	public static <T> Lista<T> getlist(ListTypes type) {
 		if(type==ListTypes.Circular) {
 			ListaDobleC<T> list=new ListaDobleC<>();

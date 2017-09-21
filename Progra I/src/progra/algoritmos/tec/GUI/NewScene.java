@@ -20,8 +20,20 @@ import progra.algoritmos.tec.estructurasDatos.Nodo;
 
 
 
-
+/**
+ * Crea una nueva ventana segun lo que se le solicite
+ * @author Dario
+ *
+ */
 public class NewScene{
+	/**
+	 * 
+	 * @param width ancho de la ventana
+	 * @param high alto de la ventana
+	 * @param name corresponde a si va a crear una ventana para Store, Json o instancia
+	 * @param treename arbol que se modifica
+	 * @throws IOException en caso de no encontrar un archivo
+	 */
 	public static void getScene(int width,int high, String name,TreeItem<String> treename) throws IOException {
 	        Stage stage = new Stage();
 	        stage.centerOnScreen();

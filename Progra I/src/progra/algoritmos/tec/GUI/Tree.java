@@ -10,8 +10,16 @@ import progra.algoritmos.tec.Main;
 import progra.algoritmos.tec.estructurasDatos.Lista;
 import progra.algoritmos.tec.estructurasDatos.Nodo;
 import progra.algoritmos.tec.jsonController.Stores;
+/**
+ * Crea un Arbol con el nombre de los archivos
+ * @author Dario
+ *
+ */
 public class Tree extends TreeCell<String>  {
 	public static TreeItem<String>treeF;
+	/*
+	 * Actualiza la variable static treeF
+	 */
 	public static void newTree() throws IOException, ParseException {
 		TreeItem<String> tree= new TreeItem<String>();
 		Lista<Lista<String>> stores=Stores.getAllStores();
@@ -29,7 +37,12 @@ public class Tree extends TreeCell<String>  {
 		}
 		 treeF=tree;
 	}
-
+/**
+ * Crea un hijo al tree indicado
+ * @param store nombre del hijo
+ * @param tree padre
+ * @return
+ */
 	public static TreeItem<String> makeBranch(String store, TreeItem<String> tree) {
 		TreeItem<String> item= new TreeItem<String>(store);
 		tree.getChildren().add(item);
@@ -99,6 +112,9 @@ public class Tree extends TreeCell<String>  {
 		
 	}
 	 @Override
+	 /**
+	  * Actualiza el menu de cada tree segun si es store o Json
+	  */
 	    public void updateItem(String item, boolean empty) {
 	        super.updateItem(item, empty);
 

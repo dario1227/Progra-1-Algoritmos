@@ -3,13 +3,21 @@ import progra.algoritmos.tec.estructurasDatos.*;
 
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * Jsons que se crean en cada Store, con sus resoectivas instancias y valores de las columnas
+ * @author Dario
+ *
+ */
 public class JsonFile implements Json{
 	String path;
 	String name;
 	File jsonfile;
 	Lista<Lista<String>> listaColumnas;
 	Lista<Lista<String>> listaInstancias;
+	/**
+	 * Se crea una instancia segun el valor que se ponga en el parametro
+	 * @param name
+	 */
 	public JsonFile(String name) {
 		this.path=null;
 		this.name=name+".json";
@@ -22,6 +30,9 @@ public class JsonFile implements Json{
 		
 	}
 	@Override
+	/**
+	 * me añade una instancia nueva a la lista de instancias
+	 */
 	public void addInstance(Lista<String>datos) {
 		Lista<String> instancia=ListFactory.getlist(ListTypes.Simple);
 		Nodo<Lista<String>> temp=this.listaColumnas.getHead();
@@ -34,6 +45,9 @@ public class JsonFile implements Json{
 		}
 		this.listaInstancias.add(instancia);
 	}
+	/**
+	 * Añade una columna nueva, segun el Store Creado
+	 */
 	@Override
 	public void addColumna(String nombre,String Tipo, String Predeterminado,String Requerido,String Especial) {
 		Lista<String> valores=ListFactory.getlist(ListTypes.Simple);

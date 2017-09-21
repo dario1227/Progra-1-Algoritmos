@@ -17,9 +17,16 @@ import progra.algoritmos.tec.estructurasDatos.ListFactory;
 import progra.algoritmos.tec.estructurasDatos.ListTypes;
 import progra.algoritmos.tec.estructurasDatos.Lista;
 import progra.algoritmos.tec.estructurasDatos.Nodo;
-
+/**
+ * Manejo de las Instancias
+ * @author Dario
+ *
+ */
 public class Instances {
 	@SuppressWarnings("unchecked")
+	/*
+	 * Guarda en memoria las instancias
+	 */
 	public static void saveInstances(Json jason) {
 		JSONObject Json=new JSONObject();
 		Json.put("Name",jason.getName());
@@ -59,6 +66,12 @@ public class Instances {
 		
 		}
 	}
+	/**
+	 * Carga las instancias en memoria
+	 * @param metadata
+	 * @throws IOException en caso de no existir el archivo
+	 * @throws ParseException en caso de que el archivo este vacio
+	 */
 	public static void readInstances(Lista<Json> metadata) throws IOException, ParseException {
 		try {
 		JSONParser parser=new JSONParser();
@@ -68,6 +81,7 @@ public class Instances {
 			Nodo<String> nombre=store.getValor().getHead();
 			Nodo<String>temp=nombre.next;
 			while(temp!=null) {
+				
 				Lista<Lista<String>> instanciasLeidas=ListFactory.getlist(ListTypes.Simple);
 				String JsonName=temp.getValor();
 				String JsonNameR=JsonName.substring(0,JsonName.length()-5);
@@ -100,11 +114,14 @@ public class Instances {
 				}
 				temp=temp.next;
 				}
+
 			store=store.next;
 		}
 		}
 		catch (Exception e) {
 			System.out.println(e);
 		}
+
 	}
+
 }

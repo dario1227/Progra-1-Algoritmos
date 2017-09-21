@@ -19,9 +19,18 @@ import progra.algoritmos.tec.estructurasDatos.ListFactory;
 import progra.algoritmos.tec.estructurasDatos.ListTypes;
 import progra.algoritmos.tec.estructurasDatos.Lista;
 import progra.algoritmos.tec.estructurasDatos.Nodo;
-
+/**
+ * Manejo del Metadata
+ * @author Dario
+ *
+ */
 public class MetadataControl {
 	@SuppressWarnings("unchecked")
+	/**
+	 * Convierte la lista en un objeto Json,el cual se guarda en memoria despues
+	 * @param metadata
+	 * @return el Objeto ya convertido
+	 */
 	public static JSONArray convertMetadata(Lista<Json> metadata) {
 		Nodo <Json> temp=metadata.getHead();
 		JSONArray metadataArray=new JSONArray();
@@ -67,6 +76,9 @@ public class MetadataControl {
 		return metadataArray;
 		
 	}
+	/*+
+	 * Guarda en memoria  el metadata
+	 */
 	public static void saveMetadata(JSONArray metadata) throws IOException, ParseException {
 		File metadataJ=new File("C:\\Users\\User1\\git\\Progra-1-Algoritmos\\Progra I\\src\\progra\\algoritmos\\tec\\metadata\\METADATA.json");
 		try(FileWriter writer=new FileWriter(metadataJ)){
@@ -80,13 +92,27 @@ public class MetadataControl {
 		}
 		
 	}
+	/**
+	 * Lee la metadata de la memoria
+	 * @return una lista para el control durante la navegacion del usuario
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public static Lista<Json> readMetadata() throws IOException, ParseException{
 		try {
 		Lista<Json> linkedDB=ListFactory.getlist(ListTypes.Doble);
 		JSONParser parser=new JSONParser();
 		FileReader reader=new FileReader("C:\\Users\\User1\\git\\Progra-1-Algoritmos\\Progra I\\src\\progra\\algoritmos\\tec\\metadata\\METADATA.json");
-		JSONArray jason =(JSONArray) parser.parse(reader); 
-		int largo=jason.size();
+		File file=new File("C:\\Users\\User1\\git\\Progra-1-Algoritmos\\Progra I\\src\\progra\\algoritmos\\tec\\metadata\\METADATA.json");
+		JSONArray jason = null;
+		int largo;
+		if(file.length()!=0) {
+			jason =(JSONArray) parser.parse(reader); 
+			largo=jason.size();
+		}
+		else {
+			largo=0;
+		}
 		int index=0;
 		while(index<largo) {
 			JSONObject store=(JSONObject) jason.get(index);

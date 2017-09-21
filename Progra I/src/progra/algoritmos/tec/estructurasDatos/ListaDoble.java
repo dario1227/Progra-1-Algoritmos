@@ -1,5 +1,10 @@
 package progra.algoritmos.tec.estructurasDatos;
-
+/**
+ * Estructura de listaDoblemente enlazada
+ * @author Dario
+ *
+ * @param <T> tipo de valor que tendra la lista
+ */
 public class ListaDoble<T> implements Lista<T>{
 		Nodo<T> head;
 		Nodo<T> tail;

@@ -1,5 +1,10 @@
 package progra.algoritmos.tec.estructurasDatos;
-
+/**
+ * Estructura de lista Circular Doblemente enlazada
+ * @author Dario
+ *
+ * @param <T>tipo de valores que tendra
+ */
 public class ListaDobleC<T> implements Lista<T>{
 	Nodo<T> tail;
 	public ListaDobleC() {

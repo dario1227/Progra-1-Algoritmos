@@ -1,5 +1,9 @@
 package progra.algoritmos.tec;
-
+/**
+ * la Clase crea una archivo Json segun el tipo de file
+ * @author Dario
+ *
+ */
 public class  FileFactory {
 	public static Json getFile(String name,FilesTypes tipo ) {
 		if(tipo==FilesTypes.Json) {
