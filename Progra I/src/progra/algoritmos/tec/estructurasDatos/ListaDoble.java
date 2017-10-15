@@ -84,4 +84,9 @@ public class ListaDoble<T> implements Lista<T>{
 			// TODO Auto-generated method stub
 			return this.tail;
 		}
+		@Override
+		public void setLista(Lista<T> lista) {
+			this.head=lista.getHead();
+			this.tail=lista.getTail();
+		}
 	}

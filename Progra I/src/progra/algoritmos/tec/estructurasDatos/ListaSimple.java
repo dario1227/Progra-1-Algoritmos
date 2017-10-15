@@ -36,9 +36,9 @@ public class ListaSimple<T> implements Lista<T> {
 					Nodo<T>temp=nodo.next;
 					if(nodo.next.getValor()==valor) {
 						nodo.next=temp.next;
+						break;
 					}
 					nodo=nodo.next;
-					
 				}
 			}
 		}
@@ -73,6 +73,10 @@ public class ListaSimple<T> implements Lista<T> {
 		public Nodo<T> getTail() {
 			// TODO Auto-generated method stub
 			return null;
+		}
+		@Override
+		public void setLista(Lista<T> lista) {
+			this.head=lista.getHead();
 		}	
 		
 	}

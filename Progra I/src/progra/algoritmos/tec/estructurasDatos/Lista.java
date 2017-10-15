@@ -12,5 +12,6 @@ public interface Lista<T> {
 	T search(T valor);
 	Nodo<T> getHead();
 	Nodo<T> getTail();
+	void setLista(Lista<T>lista);
 
 }

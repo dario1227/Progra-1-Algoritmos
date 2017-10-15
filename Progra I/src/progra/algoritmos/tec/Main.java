@@ -1,6 +1,5 @@
 package progra.algoritmos.tec;
 import java.io.IOException;
-
 import org.json.simple.parser.ParseException;
 
 import javafx.application.Application;
@@ -9,11 +8,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import progra.algoritmos.tec.GUI.NewScene;
@@ -21,7 +22,13 @@ import progra.algoritmos.tec.GUI.Tree;
 import progra.algoritmos.tec.estructurasDatos.Lista;
 import progra.algoritmos.tec.jsonController.Instances;
 import progra.algoritmos.tec.jsonController.MetadataControl;
+/**
+ * Main
+ * @author Dario
+ *
+ */
 public class Main extends Application implements EventHandler<ActionEvent>{
+	public static HBox tabla= new HBox();
 	public static Lista<Json> linkedDB;
 	public static void main(String[] args) {
 		try {
@@ -49,13 +56,19 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 //			ListController.commit(linkedDB);
 		//	JsonManagement.saveMetadata(JsonManagement.convertMetadata(linkedDB));
 //			JsonManagement.saveInstances(ListController.search(linkedDB, "estudiantestec"));
+			
 		}
+		
 		catch (Exception ex) {
 			System.out.println(ex);
 			System.out.println("SE CAYO ESTA VARA :(");
 		}
 	}
+	/**
+	 * Carga JavaFX, el GUI
+	 */
 	@Override
+
 	public void start(Stage primaryStage) throws Exception {
 		linkedDB=MetadataControl.readMetadata();
 		Instances.readInstances(linkedDB);
@@ -70,7 +83,7 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		agregarS.getItems().addAll(op1,op2);
 		op1.setOnAction(event -> {
 		    try {
-				NewScene.getScene(350, 200,"Store",Tree.treeF);
+				NewScene.getScene(300, 150,"Store",Tree.treeF);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -94,16 +107,24 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	        }
 	    });
 	    ImageView imagen=new ImageView(new Image(getClass().getResourceAsStream("tec.jpg"),248,200,false, true));
+	   System.out.println(getClass());
 	    pane.setBottom(imagen);
 	    pane.setLeft(tree);
 	    BorderPane padre= new BorderPane();
 	    padre.setLeft(pane);
+	    ScrollPane scroll=new ScrollPane(tabla);
+	    padre.setCenter(scroll);
 		Scene scene=new Scene(padre, 900, 600);
 		primaryStage.setScene(scene);
 		primaryStage.centerOnScreen();
 		primaryStage.show();
+		System.out.println("ww");
+
 	}
 	@Override
+	/**
+	 * Implementa acciones en la interfaz grafica,eventos del usuario
+	 */
 	public void handle(ActionEvent event) {
 	}
 		

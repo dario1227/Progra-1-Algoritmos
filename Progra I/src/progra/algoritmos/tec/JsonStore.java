@@ -31,11 +31,18 @@ public class JsonStore implements Json{
 		Nodo<Json> file=this.jsons.getTail();
 		Nodo<Json> end=this.jsons.getTail();
 		while(true) {
-			file.getValor().delete();
-			file=file.next;
-			if(file==end) {
+			if(file==null) {
 				break;
 			}
+			else {
+				file.getValor().delete();
+				file=file.next;
+				if(file==end) {
+					break;
+				}
+				
+			}
+
 		}
 		this.jsonStore.delete();
 		this.jsons=null;

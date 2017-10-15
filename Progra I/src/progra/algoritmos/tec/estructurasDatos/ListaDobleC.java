@@ -115,6 +115,11 @@ public class ListaDobleC<T> implements Lista<T>{
 	public Nodo<T> getTail() {
 		return this.tail;
 	}
+	@Override
+	public void setLista(Lista<T> lista) {
+		this.tail=lista.getTail();
+		
+	}
 		
 	
 }
